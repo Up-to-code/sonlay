@@ -13,6 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
+
       <NavBare />
       {children}
     </>
