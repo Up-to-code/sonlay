@@ -23,6 +23,17 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const { MansgeSound, src } = UseAoundProvider();
   const [SRC, setSRC] = useState(audioSrc);
   useEffect(() => {
+    async function chaingSRC() {
+      try {
+        const URL = await getFirebaseUrl(audioSrc);
+        setSRC(URL);
+        console.log(SRC);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    chaingSRC();
+
     const audioElement = audioRef.current;
     setTimeout(() => {
       if (audioElement && durationRef.current) {
@@ -84,15 +95,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     downloadLink.download = `${title}.mp3`; // Set the default download filename (adjust if needed)
     downloadLink.click();
   };
-  useEffect(() => {
-    async function chaingSRC() {
-      try {
-        const URL = await getFirebaseUrl(audioSrc);
-        setSRC(URL);
-      } catch (error) {}
-    }
-    chaingSRC();
-  }, [audioSrc]);
+
   return (
     <div className=" audio-player flex flex-col items-center  px-5 rounded-lg bg-gray-100 shadow-md pb-4">
       <audio

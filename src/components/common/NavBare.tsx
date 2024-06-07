@@ -11,7 +11,6 @@ import Image from "next/image";
 import UserImage, { UserName } from "./USersComponts";
 import Link from "next/link";
 
-
 function NavBare() {
   return (
     <>
@@ -42,10 +41,6 @@ function NavBare() {
                 <Link href="/user">Account</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>
-               s
-              </DropdownMenuItem>
-
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

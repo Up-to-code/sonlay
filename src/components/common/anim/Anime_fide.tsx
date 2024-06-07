@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { ReactNode, useEffect, useRef } from "react";
-import { inView, motion, useAnimation, useInView } from "framer-motion";
+import { inView, motion, useAnimation } from "framer-motion";
 
 interface Props {
   children: ReactNode;
+  onClick?: () => void;
 }
-function Anime_fide({ children }: Props) {
+function Anime_fide({ children ,onClick }: Props) {
   const ref = useRef(null);
-  const inVieo = useInView(ref, { once: true });
   const controles = useAnimation();
   const controles2 = useAnimation();
 
@@ -16,7 +17,7 @@ function Anime_fide({ children }: Props) {
   }, [inView]);
 
   return (
-    <div ref={ref}>
+    <div ref={ref} onClick={onClick}>
       <motion.div
         variants={{
           inti: { y: 100, opacity: 0 },
@@ -26,7 +27,7 @@ function Anime_fide({ children }: Props) {
         whileInView="active"
         animate={controles}
         transition={{ duration: 0.3, delay: 0.05, ease: "easeInOut" }}
-        className="w-52 h-64  border border-zinc-900 rounded-md  flex justify-center items-center  cursor-pointer overflow-hidden relative"
+        className="  border border-zinc-900 rounded-md  flex justify-center items-center  cursor-pointer overflow-hidden relative"
         whileHover={{ scale: 0.9 }}
         autoSave="active"
         onHoverStart={(e) => {

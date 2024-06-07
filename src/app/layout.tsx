@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Meduilwere from "@/lib/mdeuilwere/Meduilwere";
 import "./globals.css";
+import Footer from "@/components/common/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,18 +17,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-            <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4143624847064522"
-          crossOrigin="anonymous"
-        ></script>
+      <head>
+        {process.env.NEXT_NODE_DEV != "DEV" && (
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4143624847064522"
+            crossOrigin="anonymous"
+          ></script>
+        )}
       </head>
       <body className={inter.className}>
         <Meduilwere />
-        <main className="max-w-5xl m-auto px-1 md:px-4 xl:px-6">
+        <main className="max-w-5xl m-auto px-1 md:px-4 xl:px-6 min-h-svh">
           {children}
         </main>
+        <Footer/>
       </body>
     </html>
   );

@@ -9,6 +9,7 @@ import { getDocCool } from "@/lib/fetch/getCool";
 
 function page() {
   const [Data, setData] = useState<any>();
+  if(Data== "404") return <div>404</div>
   const params = useParams<{ id: string }>();
   useEffect(() => {
     async function getDoc() {
