@@ -9,7 +9,7 @@ import { getDocCool } from "@/lib/fetch/getCool";
 
 function page() {
   const [Data, setData] = useState<any>();
-  if(Data== "404") return <div>404</div>
+  if (Data == "404") return <div>404</div>;
   const params = useParams<{ id: string }>();
   useEffect(() => {
     async function getDoc() {
@@ -23,7 +23,6 @@ function page() {
 
   return (
     <div className="flex flex-col gap-5  my-20">
-      
       {Data ? (
         Data.data.map((e: any, index: number) => {
           return (

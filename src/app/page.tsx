@@ -19,12 +19,17 @@ const LandingPage: React.FC = () => {
               <li><a href="#contact">Contact</a></li> */}
             </ul>
             <div className="flex gap-5">
-              <Button className="anime  bg-transparent rounded-md hover:bg-white hover:text-black">
-                Login
-              </Button>
-              <Button className=" anime bg-white text-black rounded-md hover:opacity-80 hover:bg-white">
-                Sign Up
-              </Button>
+              <Link href={"/sign-in"}>
+                <Button className="anime  bg-transparent rounded-md hover:bg-white hover:text-black">
+                  Login
+                </Button>
+              </Link>
+
+              <Link href={"/sign-up"}>
+                <Button className=" anime bg-white text-black rounded-md hover:opacity-80 hover:bg-white">
+                  Sign Up
+                </Button>
+              </Link>
             </div>
           </nav>
           <div className="hero py-10 ">

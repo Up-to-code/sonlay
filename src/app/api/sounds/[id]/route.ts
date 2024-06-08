@@ -15,6 +15,5 @@ export async function GET(request: Request, context: { params: Params }) {
   docSnap.forEach((doc) => {
     data.push({ id: doc.id, doc: doc.data() });
   });
-
   return NextResponse.json({ data: data });
 }

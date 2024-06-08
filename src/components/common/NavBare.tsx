@@ -40,7 +40,9 @@ function NavBare() {
               <DropdownMenuItem>
                 <Link href="/user">Account</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/user/settings">Settings</Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

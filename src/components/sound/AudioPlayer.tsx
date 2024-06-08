@@ -27,7 +27,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
       try {
         const URL = await getFirebaseUrl(audioSrc);
         setSRC(URL);
-        console.log(SRC);
       } catch (error) {
         console.log(error);
       }

@@ -1,5 +1,4 @@
 import { db } from "@/lib/data/DB";
-import { getFirstDocument } from "@/lib/getFirstElementinFirestore";
 import { collection, getDocs } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
@@ -8,7 +7,6 @@ export async function GET() {
   const querySnapshot = await getDocs(q);
   let docs: any[] = [];
   querySnapshot.forEach((doc) => {
-  
     docs.push({ id: doc.id, doc: doc.data() });
   });
 
