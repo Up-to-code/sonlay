@@ -5,7 +5,7 @@ import { useUserDatat } from "@/lib/Store/userStore";
 import { auth } from "@/lib/data/DB";
 import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { AvatarImage } from "../ui/avatar";
+import Image from "next/image";
 
 export function UserName() {
   const [User, lodeing, error] = useAuthState(auth);
@@ -19,7 +19,21 @@ export function UserName() {
   return <p>{user.name}</p>;
 }
 
-export default function UserImage() {
+interface ImageProps {
+  ClassName? : string 
+  size? : number
+}
+export default function UserImage({ClassName , size }: ImageProps) {
   const { user } = useUserDatat();
-  return <AvatarImage src={user.userImage} />;
+  return (
+    <div className={" flex justify-center items-center relative overflow-hidden w-20 h-20  bg-zinc-200 border border-zinc-700 rounded-full " + ClassName}>
+      <Image
+        className="scale-125"
+        src={user.userImage || "/user.jpeg"}
+        width={size || 150}
+        height={size || 150}
+        alt=""
+      ></Image>
+    </div>
+  );
 }

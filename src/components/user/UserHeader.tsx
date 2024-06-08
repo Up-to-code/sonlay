@@ -7,7 +7,7 @@ function UserHeader() {
       <div className="absolute bottom-[-60px] flex flex-col gap-2 items-center ">
         <Avatar className="bg-white size-20  border-black border-2">
           <UserImage />
-          <AvatarFallback>SO</AvatarFallback>
+          
         </Avatar>
         <UserName />
       </div>

@@ -6,7 +6,6 @@ function page() {
     <div>
       <UserHeader />
       <NotFounde />
-      
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { create } from "zustand";
 import { auth, db } from "../data/DB";
 
-interface User {
+export interface User {
   name: string;
   userType: "user" | "admin";
   Fiverit: object;

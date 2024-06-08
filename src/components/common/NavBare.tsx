@@ -30,8 +30,7 @@ function NavBare() {
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar className="bg-white size-9  border-2 ">
-                <UserImage />
-                <AvatarFallback>SO</AvatarFallback>
+                <UserImage ClassName=" w-12 h-12 absolute bottom-[7px] " size={40} />
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
