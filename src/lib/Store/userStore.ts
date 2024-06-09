@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { auth, db } from "../data/DB";
 
 export interface User {
+  image: string | undefined;
   name: string;
   userType: "user" | "admin";
   Fiverit: object;
@@ -12,6 +13,7 @@ export interface User {
 interface UserStore {
   user: User;
   getUser: () => Promise<void>;
+  setUser?: (user: User) => void;
 }
 
 export const useUserDatat = create<UserStore>()((set) => ({
@@ -52,4 +54,6 @@ export const useUserDatat = create<UserStore>()((set) => ({
       }
     }
   },
+  // getUser: () => {},
+  setUser: (user) => set({ user }),
 }));

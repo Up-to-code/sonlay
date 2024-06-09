@@ -1,4 +1,6 @@
 "use client";
+import Edit_Image from "@/components/Auth/Edit_Image";
+import Edit_Name from "@/components/Auth/Edit_Name";
 import Logot from "@/components/Auth/Logot";
 import UserAvterImage from "@/components/common/UserAvterIMage";
 import { useUserDatat } from "@/lib/Store/userStore";
@@ -14,10 +16,12 @@ const ProfilePage = () => {
       <div className="min-h-screen flex flex-col items-center justify-center bg-zinc-100">
         <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
           <div className="flex flex-col items-center">
-            <UserAvterImage ImagePath={user.userImage || "/user.jpeg"} />
-            <h1 className="mt-4 text-2xl font-semibold text-gray-900 flex gap-3" >
+            <Edit_Image>
+              <UserAvterImage ImagePath={user.userImage || "/user.jpeg"} />
+            </Edit_Image>
+            <h1 className="mt-4 text-2xl font-semibold text-gray-900 flex gap-3">
               {user.name}
-              <Pencil className="cus" />
+              <Edit_Name />
             </h1>
             {/* <p className="mt-2 text-gray-600">Software Engineer</p> */}
           </div>

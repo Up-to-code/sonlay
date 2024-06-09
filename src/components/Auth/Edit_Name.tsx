@@ -13,19 +13,41 @@ import {
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "@/lib/data/DB";
+import { doc, updateDoc } from "firebase/firestore";
+import { useUserDatat } from "@/lib/Store/userStore";
 
 function Edit_Name() {
+  const [User, loading, error] = useAuthState(auth);
   const [Name, setName] = useState("");
- const HeadlerSave = async () => {
+  const { setUser, user } = useUserDatat();
+  const HeadlerSave = async () => {
+    if (User?.uid) {
+      const docRef = doc(db, "users", User?.uid);
+      try {
+        await updateDoc(docRef, {
+          name: Name,
+        });
 
+        if (setUser) {
+          setUser({
+            ...user,
+            name: Name,
+          });
+        }
 
+        console.log(`Document ${User?.uid} updated successfully`);
+      } catch (error) {
+        console.error("Error updating document: ", error);
+      }
+    }
+  };
 
- }
   return (
     <div>
       <AlertDialog>
         <AlertDialogTrigger>
-  
           <Pencil className="cursor-pointer" />
         </AlertDialogTrigger>
         <AlertDialogContent>
@@ -35,12 +57,17 @@ function Edit_Name() {
             </AlertDialogTitle>
             <div className="grid gap-4 py-4">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" type="text" onChange={(e) => setName(e.target.value)} />
+              <Input
+                id="name"
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+                value={user.name}
+              />
             </div>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction >Save</AlertDialogAction>
+            <AlertDialogAction onClick={HeadlerSave}>Save</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
@@ -49,7 +76,3 @@ function Edit_Name() {
 }
 
 export default Edit_Name;
-function setProfile(arg0: (prevProfile: any) => any) {
-  throw new Error("Function not implemented.");
-}
-

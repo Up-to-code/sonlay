@@ -1,13 +1,24 @@
-
 import React from "react";
-import { AlertDialogHeader, AlertDialogFooter, AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogTitle, AlertDialogTrigger } from "../ui/alert-dialog";
+import {
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
 import { auth } from "@/lib/data/DB";
 
 function Logot() {
   return (
     <div>
       <AlertDialog>
-        <AlertDialogTrigger className=" bg-red-600 text-white font-bold py-2 px-4 rounded">Log Out</AlertDialogTrigger>
+        <AlertDialogTrigger className=" bg-red-600 text-white font-bold py-2 px-4 rounded">
+          Log Out
+        </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -17,7 +28,12 @@ function Logot() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction className=" bg-red-600 text-white font-bold py-2 px-4 rounded" onClick={() => auth.signOut()}>
+            <AlertDialogAction
+              className=" bg-red-600 text-white font-bold py-2 px-4 rounded"
+              onClick={() =>
+                auth.signOut().then(() => (window.location.href = "/sign-in"))
+              }
+            >
               Log Out
             </AlertDialogAction>
           </AlertDialogFooter>
