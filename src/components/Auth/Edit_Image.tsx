@@ -20,7 +20,6 @@ import {
   getDownloadURL,
   deleteObject,
 } from "firebase/storage";
-import image from "next/image";
 import React from "react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { doc, updateDoc } from "firebase/firestore";

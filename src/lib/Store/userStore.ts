@@ -3,7 +3,6 @@ import { create } from "zustand";
 import { auth, db } from "../data/DB";
 
 export interface User {
-  image: string | undefined;
   name: string;
   userType: "user" | "admin";
   Fiverit: object;

@@ -1,6 +1,5 @@
 // src/components/Footer.tsx
 import { Instagram, Twitter, XIcon, Youtube } from "lucide-react";
-import Image from "next/image";
 import React from "react";
 
 const Footer: React.FC = () => {
