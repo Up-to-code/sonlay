@@ -61,7 +61,7 @@ function Edit_Name() {
                 id="name"
                 type="text"
                 onChange={(e) => setName(e.target.value)}
-                value={user.name}
+               placeholder="Name"
               />
             </div>
           </AlertDialogHeader>
