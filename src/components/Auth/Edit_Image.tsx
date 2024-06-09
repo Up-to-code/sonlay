@@ -53,14 +53,16 @@ function Edit_Image({ children }: { children: React.ReactNode }) {
             if (setUser) {
               setUser({ ...user, userImage: downloadURL });
             }
-            if (user.userImage != downloadURL && user.userImage) {
-              const fileRef = ref(storage, user.userImage);
-              try {
-                await deleteObject(fileRef);
-              } catch (error) {
-                console.error("Error deleting file: ", error);
+            setTimeout(() => {
+              if (user.userImage != downloadURL && user.userImage) {
+                const fileRef = ref(storage, user.userImage);
+                try {
+                  deleteObject(fileRef);
+                } catch (error) {
+                  console.error("Error deleting file: ", error);
+                }
               }
-            }
+            }, 1000);
           } catch (error) {
             console.error("Error uploading image: ", error);
           }
