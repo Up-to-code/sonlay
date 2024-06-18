@@ -121,14 +121,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title }) => {
         </div>
 
         <div className="flex gap-5 items-center">
-          {/* <Button
-            className="bg-transparent border border-black text-black hover:bg-black hover:text-white"
-            onClick={() => {
-              downloadMP3();
-            }}
-          >
-            Download
-          </Button> */}
+
           <Alert storage={storage} SRC={SRC} />
           
           <span className="current-time text-sm none-sm" ref={currentTimeRef}>
