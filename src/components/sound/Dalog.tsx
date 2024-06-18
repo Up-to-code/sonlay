@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { ref, getDownloadURL } from "firebase/storage"; // Ensure you have these imports
 import { Button } from '../ui/button';
+import { Download } from 'lucide-react';
 
 interface AppProps {
   storage: any;
@@ -34,7 +35,8 @@ const Alert: React.FC<AppProps> = ({ storage, SRC }) => {
       <Button
         onClick={downloadMp3}
       >
-        Download MP3
+        <Download size={24} color='#FFF' />
+        <span className="ml-2 hidden md:visible">Download MP3</span>
       </Button>
       
       {isDialogOpen && (

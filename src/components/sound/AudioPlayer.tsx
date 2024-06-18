@@ -117,7 +117,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title }) => {
           >
             {isPlaying ? <Pause color="#FFF" /> : <Play />}
           </Button>
-          <p className=" mx-5 font-bold text-lg">{title}</p>
+          <p className=" mx-5 font-bold text-lg max-h-5 overflow-hidden md:max-h-max">{title}</p>
         </div>
 
         <div className="flex gap-5 items-center">
@@ -130,10 +130,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title }) => {
             Download
           </Button> */}
           <Alert storage={storage} SRC={SRC} />
-          <span className="current-time text-sm" ref={currentTimeRef}>
+          
+          <span className="current-time text-sm none-sm" ref={currentTimeRef}>
             00:00
           </span>
-          <span className="duration text-sm" ref={durationRef}>
+          <span className="duration text-sm none-sm" ref={durationRef}>
             00:00
           </span>
         </div>
