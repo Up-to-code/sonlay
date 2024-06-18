@@ -34,11 +34,20 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title }) => {
     chaingSRC();
 
     const audioElement = audioRef.current;
-    setTimeout(() => {
+    const time = setInterval(() => {
       if (audioElement && durationRef.current) {
-        durationRef.current.textContent = formatTime(audioElement.duration);
+        const chick = (durationRef.current.textContent = formatTime(
+          audioElement.duration
+        ));
+
+        if (chick != "NaN:NaN") {
+          clearInterval(time);
+        }
       }
     }, 1000);
+    setTimeout(() => {
+      clearInterval(time);
+    }, 10000);
   }, [audioSrc]);
 
   const formatTime = (seconds: number) => {
@@ -88,7 +97,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title }) => {
         audioElement.removeEventListener("timeupdate", updateCurrentTime);
     }
   }, [audioRef, formatTime]);
-
 
   return (
     <div className=" audio-player flex flex-col items-center  px-5 rounded-lg bg-gray-100 shadow-md pb-4">
