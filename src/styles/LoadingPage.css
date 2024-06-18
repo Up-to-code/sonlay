@@ -1,0 +1,19 @@
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    font-family: Arial, sans-serif;
+  }
+  
+  .spinner {
+    margin-bottom: 20px;
+  }
+  
+  .loading-message {
+    font-size: 1.5em;
+    text-align: center;
+  }
+  
