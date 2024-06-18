@@ -15,7 +15,7 @@ function NavBare() {
   return (
     <>
       <div className="h-12"></div>
-      <nav className="m-auto h-14 w-full max-w-5xl px-2 md:px-4 lg:px-6 flex items-center justify-between fixed top-0 mr-auto bg-white z-20">
+      <nav className="m-auto h-14 w-full max-w-5xl px-2 md:px-4 lg:px-6 flex items-center justify-between fixed top-0 mr-auto bg-white z-10">
         <Link href="/home">
           <Image
             src="/logo.png"

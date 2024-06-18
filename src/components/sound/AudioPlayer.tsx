@@ -7,6 +7,7 @@ import { UseAoundProvider } from "@/lib/Store/SoundlustProvider";
 import { getFirebaseUrl } from "@/lib/getURl";
 import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from "@/lib/data/DB";
+import Alert from "./Dalog";
 
 interface AudioPlayerProps {
   audioSrc: string; // Path to the audio file
@@ -88,23 +89,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title }) => {
     }
   }, [audioRef, formatTime]);
 
-  const downloadMP3 = async () => {
-    if (SRC) {
-      const link = document.createElement("a");
-      link.href = SRC;
-      if (title) {
-        link.title = `${title}.mp3`;
-      }
-      if (SRC) {
-        link.download = `${title}.mp3`;
-      } else {
-        link.download = "audio.mp3";
-      }
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  };
 
   return (
     <div className=" audio-player flex flex-col items-center  px-5 rounded-lg bg-gray-100 shadow-md pb-4">
@@ -129,14 +113,15 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title }) => {
         </div>
 
         <div className="flex gap-5 items-center">
-          <Button
+          {/* <Button
             className="bg-transparent border border-black text-black hover:bg-black hover:text-white"
             onClick={() => {
               downloadMP3();
             }}
           >
             Download
-          </Button>
+          </Button> */}
+          <Alert storage={storage} SRC={SRC} />
           <span className="current-time text-sm" ref={currentTimeRef}>
             00:00
           </span>
