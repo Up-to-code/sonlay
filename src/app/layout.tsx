@@ -17,13 +17,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-4143624847064522" />
+      </head>
       <body className={inter.className}>
         <Meduilwere />
         <main className="max-w-5xl m-auto px-1 md:px-4 xl:px-6 min-h-svh">
           {children}
         </main>
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
