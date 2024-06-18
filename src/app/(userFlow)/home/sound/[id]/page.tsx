@@ -15,7 +15,7 @@ function page() {
     async function getDoc() {
       const getData = await getDocCool(params.id);
       setData(getData);
-      console.log(getData);
+
       return getData;
     }
     getDoc();
