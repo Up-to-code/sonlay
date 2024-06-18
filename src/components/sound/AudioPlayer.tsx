@@ -89,10 +89,13 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title }) => {
   }, [audioRef, formatTime]);
 
   const downloadMP3 = async () => {
-    if (audioSrc) {
+    if (SRC) {
       const link = document.createElement("a");
-      link.href = audioSrc;
-      if (audioSrc) {
+      link.href = SRC;
+      if (title) {
+        link.title = `${title}.mp3`;
+      }
+      if (SRC) {
         link.download = `${title}.mp3`;
       } else {
         link.download = "audio.mp3";
@@ -102,6 +105,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title }) => {
       document.body.removeChild(link);
     }
   };
+
   return (
     <div className=" audio-player flex flex-col items-center  px-5 rounded-lg bg-gray-100 shadow-md pb-4">
       <audio
