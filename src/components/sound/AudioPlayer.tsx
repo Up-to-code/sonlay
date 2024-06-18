@@ -5,16 +5,15 @@ import { Button } from "../ui/button";
 import { Pause, Play } from "lucide-react";
 import { UseAoundProvider } from "@/lib/Store/SoundlustProvider";
 import { getFirebaseUrl } from "@/lib/getURl";
+import { getDownloadURL, ref } from "firebase/storage";
+import { storage } from "@/lib/data/DB";
 
 interface AudioPlayerProps {
   audioSrc: string; // Path to the audio file
   downloadUrl?: string; // Optional download URL (if different from audioSrc)
   title?: string;
 }
-const AudioPlayer: React.FC<AudioPlayerProps> = ({
-  audioSrc,
-  title,
-}) => {
+const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const currentTimeRef = useRef<HTMLSpanElement>(null);
@@ -36,7 +35,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     const audioElement = audioRef.current;
     setTimeout(() => {
       if (audioElement && durationRef.current) {
-        durationRef.current.textContent = formatTime(audioElement.currentTime);
+        durationRef.current.textContent = formatTime(audioElement.duration);
       }
     }, 1000);
   }, [audioSrc]);
@@ -74,7 +73,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     }
   }, [src, audioRef.current]);
 
-
   useEffect(() => {
     const audioElement = audioRef.current;
     if (audioElement) {
@@ -90,18 +88,18 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     }
   }, [audioRef, formatTime]);
 
-  const downloadMp3 = async () => {
-    try {
-      const url = await getFirebaseUrl(audioSrc);
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const urlObject = URL.createObjectURL(blob);
+  const downloadMP3 = async () => {
+    if (audioSrc) {
       const link = document.createElement("a");
-      link.href = urlObject;
-      link.download = `${title}.mp3`;
+      link.href = audioSrc;
+      if (audioSrc) {
+        link.download = `${title}.mp3`;
+      } else {
+        link.download = "audio.mp3";
+      }
+      document.body.appendChild(link);
       link.click();
-    } catch (error) {
-      console.error(error);
+      document.body.removeChild(link);
     }
   };
   return (
@@ -129,7 +127,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
         <div className="flex gap-5 items-center">
           <Button
             className="bg-transparent border border-black text-black hover:bg-black hover:text-white"
-            onClick={downloadMp3}
+            onClick={() => {
+              downloadMP3();
+            }}
           >
             Download
           </Button>
